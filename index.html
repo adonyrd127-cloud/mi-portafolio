@@ -271,7 +271,7 @@
     <div class="sum-grid">
       <div class="sum-card">
         <div class="sum-lbl">Inversión Total</div>
-        <div class="sum-val">$525.33</div>
+        <div class="sum-val">$528.12</div>
         <div class="sum-sub">Costo base del portafolio</div>
         <div class="sum-ico">💰</div>
       </div>
@@ -353,9 +353,9 @@
         </div>
         <div class="adiv"></div>
         <div class="astats">
-          <div class="astat"><div class="astat-lbl">Balance</div><div class="astat-val">0.00031 BTC</div></div>
-          <div class="astat"><div class="astat-lbl">Precio promedio</div><div class="astat-val">$97,513.63</div></div>
-          <div class="astat"><div class="astat-lbl">Inversión</div><div class="astat-val">$30.23</div></div>
+          <div class="astat"><div class="astat-lbl">Balance</div><div class="astat-val">0.00035012 BTC</div></div>
+          <div class="astat"><div class="astat-lbl">Precio promedio</div><div class="astat-val">$94,310.52</div></div>
+          <div class="astat"><div class="astat-lbl">Inversión</div><div class="astat-val">$33.02</div></div>
           <div class="astat"><div class="astat-lbl">Valor actual</div><div class="astat-val" id="btc-val">—</div></div>
           <div class="astat" style="grid-column:1/-1"><div class="astat-lbl">P&amp;L</div><div class="astat-val neg" id="btc-pnl">—</div></div>
         </div>
@@ -365,12 +365,12 @@
 
   <!-- ===== TRANSACCIONES ===== -->
   <div class="panel" id="panel-transacciones">
-    <div class="stitle">Historial de Transacciones <small>17 operaciones</small></div>
+    <div class="stitle">Historial de Transacciones <small>18 operaciones</small></div>
     <div class="tx-filters">
-      <button class="txf active" id="txf-all" onclick="filterTx('all')">Todas (17)</button>
+      <button class="txf active" id="txf-all" onclick="filterTx('all')">Todas (18)</button>
       <button class="txf ton" id="txf-ton" onclick="filterTx('TON')">TON (15)</button>
       <button class="txf xrp" id="txf-xrp" onclick="filterTx('XRP')">XRP (1)</button>
-      <button class="txf btc" id="txf-btc" onclick="filterTx('BTC')">BTC (1)</button>
+      <button class="txf btc" id="txf-btc" onclick="filterTx('BTC')">BTC (2)</button>
     </div>
     <div class="tx-wrap">
       <table class="tx-tbl" id="tx-tbl">
@@ -445,7 +445,7 @@
 const ASSETS = {
   ton:{ id:'the-open-network', qty:238.51, avg:1.9580, inv:467.00, name:'TON', cls:'ton' },
   xrp:{ id:'ripple',           qty:10.00,  avg:2.8097, inv:28.10,  name:'XRP', cls:'xrp' },
-  btc:{ id:'bitcoin',          qty:0.00031,avg:97513.63,inv:30.23, name:'BTC', cls:'btc' },
+  btc:{ id:'bitcoin',          qty:0.00035012,avg:94310.52,inv:33.02, name:'BTC', cls:'btc' },
 };
 
 const TXNS = [
@@ -466,6 +466,7 @@ const TXNS = [
   {n:14, date:'30 ene 2026, 20:00',  pair:'TON/USDT', type:'COMPRA', price:1.3600,    qty:36.76,    total:49.99},
   {n:15, date:'30 ene 2026, 20:00',  pair:'TON/USDT', type:'COMPRA', price:1.3590,    qty:22.07,    total:29.99},
   {n:101,date:'05 sept 2025, 00:31', pair:'XRP/USDC', type:'COMPRA', price:2.8097,    qty:10.00,    total:28.10},
+  {n:102,date:'27 mar 2024, 20:14',  pair:'BTC/DEPÓSITO', type:'COMPRA', price:69455.00,   qty:0.00004012, total:2.79},
 ];
 
 const PROJS = {
@@ -708,8 +709,8 @@ function setStatus(ok, msg) {
 }
 
 function updateUI() {
-  const INVS = { ton:467.00, xrp:28.10, btc:30.23 };
-  const QTYS = { ton:238.51, xrp:10.00, btc:0.00031 };
+  const INVS = { ton:467.00, xrp:28.10, btc:33.02 };
+  const QTYS = { ton:238.51, xrp:10.00, btc:0.00035012 };
   let totalVal = 0, totalPnl = 0;
   ['ton','xrp','btc'].forEach(c => {
     const pe  = document.getElementById(c + '-price');
@@ -735,7 +736,7 @@ function updateUI() {
     const tot   = document.getElementById('dash-total');
     const hdr   = document.getElementById('hdr-val-num');
     if (pnlEl) { pnlEl.textContent = (totalPnl >= 0 ? '+' : '') + '$' + nfmt(totalPnl); pnlEl.className = 'sum-val ' + (totalPnl >= 0 ? 'pos' : 'neg'); }
-    if (pctEl) { pctEl.textContent = ((totalPnl / 525.33) * 100).toFixed(2) + '%'; pctEl.className = 'sum-sub ' + (totalPnl >= 0 ? 'pos' : 'neg'); }
+    if (pctEl) { pctEl.textContent = ((totalPnl / 528.12) * 100).toFixed(2) + '%'; pctEl.className = 'sum-sub ' + (totalPnl >= 0 ? 'pos' : 'neg'); }
     if (tot)   tot.textContent = '$' + nfmt(totalVal);
     if (hdr)   hdr.textContent = '$' + nfmt(totalVal);
   }
