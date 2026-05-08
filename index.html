@@ -271,19 +271,19 @@
     <div class="sum-grid">
       <div class="sum-card">
         <div class="sum-lbl">Inversión Total</div>
-        <div class="sum-val">$528.12</div>
+        <div class="sum-val">$508.65</div>
         <div class="sum-sub">Costo base del portafolio</div>
         <div class="sum-ico">💰</div>
       </div>
       <div class="sum-card">
         <div class="sum-lbl">P&amp;L Total</div>
-        <div class="sum-val neg" id="dash-pnl">—</div>
+        <div class="sum-val pos" id="dash-pnl">+$110.06</div>
         <div class="sum-sub neg" id="dash-pnl-pct">—</div>
         <div class="sum-ico">📉</div>
       </div>
       <div class="sum-card">
         <div class="sum-lbl">Valor Total del Portafolio</div>
-        <div class="sum-val" id="dash-total">—</div>
+        <div class="sum-val" id="dash-total">$532.71</div>
         <div class="sum-sub">3 Activos</div>
         <div class="sum-ico">🪙</div>
       </div>
@@ -307,9 +307,9 @@
         </div>
         <div class="adiv"></div>
         <div class="astats">
-          <div class="astat"><div class="astat-lbl">Balance</div><div class="astat-val">238.51 TON</div></div>
-          <div class="astat"><div class="astat-lbl">Precio promedio</div><div class="astat-val">$1.9580</div></div>
-          <div class="astat"><div class="astat-lbl">Inversión</div><div class="astat-val">$467.00</div></div>
+          <div class="astat"><div class="astat-lbl">Balance</div><div class="astat-val">219.40 TON</div></div>
+          <div class="astat"><div class="astat-lbl">Precio promedio</div><div class="astat-val">$2.04</div></div>
+          <div class="astat"><div class="astat-lbl">Inversión</div><div class="astat-val">$447.53</div></div>
           <div class="astat"><div class="astat-lbl">Valor actual</div><div class="astat-val" id="ton-val">—</div></div>
           <div class="astat" style="grid-column:1/-1"><div class="astat-lbl">P&amp;L</div><div class="astat-val neg" id="ton-pnl">—</div></div>
         </div>
@@ -443,7 +443,7 @@
 <script>
 /* ====== DATA ====== */
 const ASSETS = {
-  ton:{ id:'the-open-network', qty:238.51, avg:1.9580, inv:467.00, name:'TON', cls:'ton' },
+  ton:{ id:'the-open-network', qty:219.40213097, avg:2.04, inv:447.53, name:'TON', cls:'ton' },
   xrp:{ id:'ripple',           qty:10.00,  avg:2.8097, inv:28.10,  name:'XRP', cls:'xrp' },
   btc:{ id:'bitcoin',          qty:0.00035012,avg:94310.52,inv:33.02, name:'BTC', cls:'btc' },
 };
@@ -467,6 +467,8 @@ const TXNS = [
   {n:15, date:'30 ene 2026, 20:00',  pair:'TON/USDT', type:'COMPRA', price:1.3590,    qty:22.07,    total:29.99},
   {n:101,date:'05 sept 2025, 00:31', pair:'XRP/USDC', type:'COMPRA', price:2.8097,    qty:10.00,    total:28.10},
   {n:102,date:'27 mar 2024, 20:14',  pair:'BTC/DEPÓSITO', type:'COMPRA', price:69455.00,   qty:0.00004012, total:2.79},
+  {n:103, date:'05 may 2026, 20:00', pair:'TON/USDT', type:'VENTA', price:2.04699, qty:9.77044077, total:20.00},
+  {n:104, date:'06 may 2026, 20:00', pair:'TON/USDT', type:'VENTA', price:2.10, qty:9.76, total:20.50},
 ];
 
 const PROJS = {
@@ -709,8 +711,8 @@ function setStatus(ok, msg) {
 }
 
 function updateUI() {
-  const INVS = { ton:467.00, xrp:28.10, btc:33.02 };
-  const QTYS = { ton:238.51, xrp:10.00, btc:0.00035012 };
+  const INVS = { ton:447.53, xrp:28.10, btc:33.02 };
+  const QTYS = { ton:219.40213097, xrp:10.00, btc:0.00035012 };
   let totalVal = 0, totalPnl = 0;
   ['ton','xrp','btc'].forEach(c => {
     const pe  = document.getElementById(c + '-price');
