@@ -270,21 +270,21 @@
   <div class="panel active" id="panel-dashboard">
     <div class="sum-grid">
       <div class="sum-card">
-        <div class="sum-lbl">Inversión Total</div>
-        <div class="sum-val">$447.53</div>
-        <div class="sum-sub">Costo base del portafolio</div>
+        <div class="sum-lbl">Inversión TON (neta)</div>
+        <div class="sum-val">$385.47</div>
+        <div class="sum-sub">189.05 TON × $2.04 avg</div>
         <div class="sum-ico">💰</div>
       </div>
       <div class="sum-card">
         <div class="sum-lbl">P&amp;L Total</div>
-        <div class="sum-val pos" id="dash-pnl">+$110.06</div>
-        <div class="sum-sub neg" id="dash-pnl-pct">—</div>
-        <div class="sum-ico">📉</div>
+        <div class="sum-val pos" id="dash-pnl">—</div>
+        <div class="sum-sub" id="dash-pnl-pct">—</div>
+        <div class="sum-ico">📈</div>
       </div>
       <div class="sum-card">
         <div class="sum-lbl">Valor Total del Portafolio</div>
-        <div class="sum-val" id="dash-total">$532.71</div>
-        <div class="sum-sub">3 Activos</div>
+        <div class="sum-val" id="dash-total">—</div>
+        <div class="sum-sub">3 Activos · Precio vivo</div>
         <div class="sum-ico">🪙</div>
       </div>
     </div>
@@ -307,9 +307,9 @@
         </div>
         <div class="adiv"></div>
         <div class="astats">
-          <div class="astat"><div class="astat-lbl">Balance</div><div class="astat-val">219.40 TON</div></div>
+          <div class="astat"><div class="astat-lbl">Balance</div><div class="astat-val">189.05 TON</div></div>
           <div class="astat"><div class="astat-lbl">Precio promedio</div><div class="astat-val">$2.04</div></div>
-          <div class="astat"><div class="astat-lbl">Inversión</div><div class="astat-val">$447.53</div></div>
+          <div class="astat"><div class="astat-lbl">Inversión</div><div class="astat-val">$385.47</div></div>
           <div class="astat"><div class="astat-lbl">Valor actual</div><div class="astat-val" id="ton-val">—</div></div>
           <div class="astat" style="grid-column:1/-1"><div class="astat-lbl">P&amp;L</div><div class="astat-val neg" id="ton-pnl">—</div></div>
         </div>
@@ -365,10 +365,10 @@
 
   <!-- ===== TRANSACCIONES ===== -->
   <div class="panel" id="panel-transacciones">
-    <div class="stitle">Historial de Transacciones <small>18 operaciones</small></div>
+    <div class="stitle">Historial de Transacciones <small>12 operaciones</small></div>
     <div class="tx-filters">
-      <button class="txf active" id="txf-all" onclick="filterTx('all')">Todas (18)</button>
-      <button class="txf ton" id="txf-ton" onclick="filterTx('TON')">TON (15)</button>
+      <button class="txf active" id="txf-all" onclick="filterTx('all')">Todas (12)</button>
+      <button class="txf ton" id="txf-ton" onclick="filterTx('TON')">TON (9)</button>
       <button class="txf xrp" id="txf-xrp" onclick="filterTx('XRP')">XRP (1)</button>
       <button class="txf btc" id="txf-btc" onclick="filterTx('BTC')">BTC (2)</button>
     </div>
@@ -443,46 +443,46 @@
 <script>
 /* ====== DATA ====== */
 const ASSETS = {
-  ton:{ id:'the-open-network', qty:219.40213097, avg:2.04, inv:447.53, name:'TON', cls:'ton' },
-  xrp:{ id:'ripple',           qty:10.00,  avg:2.8097, inv:28.10,  name:'XRP', cls:'xrp' },
-  btc:{ id:'bitcoin',          qty:0.00035012,avg:94310.52,inv:33.02, name:'BTC', cls:'btc' },
+  ton:{ id:'the-open-network', qty:189.05197356, avg:2.04, inv:385.47, name:'TON', cls:'ton' },
+  xrp:{ id:'ripple',           qty:10.00,        avg:2.8097, inv:28.10, name:'XRP', cls:'xrp' },
+  btc:{ id:'bitcoin',          qty:0.00035012,   avg:94310.52, inv:33.02, name:'BTC', cls:'btc' },
 };
 
 const TXNS = [
-  {n:1,  date:'21 sept 2025, 00:31', pair:'TON/USDT', type:'COMPRA', price:2.8060,    qty:17.99,    total:50.48},
-  {n:2,  date:'24 sept 2025, 20:00', pair:'TON/USDC', type:'COMPRA', price:2.6790,    qty:37.78,    total:101.21},
-  {n:3,  date:'03 oct 2025, 20:00',  pair:'TON/USDC', type:'VENTA',  price:2.9000,    qty:3.45,     total:10.01},
-  {n:4,  date:'05 oct 2025, 20:00',  pair:'TON/USDC', type:'VENTA',  price:2.8700,    qty:1.78,     total:5.11},
-  {n:5,  date:'06 oct 2025, 20:00',  pair:'TON/USDC', type:'COMPRA', price:2.8000,    qty:5.35,     total:14.98},
-  {n:6,  date:'07 oct 2025, 20:00',  pair:'TON/USDC', type:'COMPRA', price:2.7340,    qty:2.46,     total:6.73},
-  {n:7,  date:'09 oct 2025, 20:00',  pair:'TON/USDC', type:'COMPRA', price:1.7090,    qty:56.78,    total:97.04},
-  {n:8,  date:'16 oct 2025, 20:00',  pair:'TON/USDC', type:'COMPRA', price:2.0830,    qty:47.50,    total:98.94},
-  {n:9,  date:'19 oct 2025, 20:00',  pair:'TON/USDC', type:'VENTA',  price:2.2890,    qty:4.37,     total:10.00},
-  {n:10, date:'30 oct 2025, 20:00',  pair:'TON/USDC', type:'VENTA',  price:2.2900,    qty:4.80,     total:10.99},
-  {n:11, date:'02 nov 2025, 20:00',  pair:'TON/USDT', type:'COMPRA', price:2.0100,    qty:24.87,    total:49.99},
-  {n:101,date:'14 nov 2025, 05:06',  pair:'BTC/USDT', type:'COMPRA', price:97513.63,  qty:0.00031,  total:30.23},
-  {n:12, date:'19 nov 2025, 20:00',  pair:'TON/USDT', type:'COMPRA', price:1.6160,    qty:20.66,    total:33.39},
-  {n:13, date:'05 ene 2026, 20:00',  pair:'TON/USDT', type:'VENTA',  price:1.9400,    qty:5.16,     total:10.01},
-  {n:14, date:'30 ene 2026, 20:00',  pair:'TON/USDT', type:'COMPRA', price:1.3600,    qty:36.76,    total:49.99},
-  {n:15, date:'30 ene 2026, 20:00',  pair:'TON/USDT', type:'COMPRA', price:1.3590,    qty:22.07,    total:29.99},
-  {n:101,date:'05 sept 2025, 00:31', pair:'XRP/USDC', type:'COMPRA', price:2.8097,    qty:10.00,    total:28.10},
-  {n:102,date:'27 mar 2024, 20:14',  pair:'BTC/DEPÓSITO', type:'COMPRA', price:69455.00,   qty:0.00004012, total:2.79},
-  {n:103, date:'05 may 2026, 20:00', pair:'TON/USDT', type:'VENTA', price:2.04699, qty:9.77044077, total:20.00},
-  {n:104, date:'06 may 2026, 20:00', pair:'TON/USDT', type:'VENTA', price:2.10, qty:9.76, total:20.50},
+  // ── COMPRAS TON ──
+  {n:1, date:'28 dic 2025',        pair:'TON/USDT', type:'COMPRA', price:1.65,   qty:196.03,      total:323.45},
+  {n:2, date:'04 ene 2026',        pair:'TON/USDT', type:'COMPRA', price:1.87,   qty:189.98,      total:355.27},
+  {n:3, date:'05 ene 2026',        pair:'TON/USDT', type:'COMPRA', price:1.90,   qty:0.004,       total:0.01},
+  {n:4, date:'31 ene 2026',        pair:'TON/USDT', type:'COMPRA', price:1.35,   qty:58.77,       total:79.34},
+  {n:5, date:'05 may 2026',        pair:'TON/USDT', type:'COMPRA', price:2.05,   qty:9.77,        total:20.00},
+  // ── VENTAS TON ──
+  {n:6, date:'05 may 2026, 21:05', pair:'TON/USDT', type:'VENTA',  price:2.047,  qty:9.77,        total:20.00},
+  {n:7, date:'06 may 2026, 00:26', pair:'TON/USDT', type:'VENTA',  price:2.15,   qty:9.76,        total:20.98},
+  {n:8, date:'06 may 2026, 20:26', pair:'TON/USDT', type:'VENTA',  price:2.50,   qty:12.48,       total:31.20},
+  {n:9, date:'07 may 2026, 01:18', pair:'TON/USDT', type:'VENTA',  price:2.85,   qty:17.89,       total:50.99},
+  // ── OTROS ACTIVOS ──
+  {n:10,date:'05 sept 2025',       pair:'XRP/USDC', type:'COMPRA', price:2.8097, qty:10.00,       total:28.10},
+  {n:11,date:'14 nov 2025',        pair:'BTC/USDT', type:'COMPRA', price:97513.63,qty:0.00031,    total:30.23},
+  {n:12,date:'27 mar 2024',        pair:'BTC/DEPÓSITO', type:'COMPRA', price:69455.00, qty:0.00004012, total:2.79},
 ];
 
 const PROJS = {
   ton:{
     scenarios:[
-      {p:0.50,  l:'$0.50'  },
       {p:1.00,  l:'$1.00'  },
       {p:1.50,  l:'$1.50'  },
-      {p:1.96,  l:'$1.96',  be:true},
-      {p:2.04,  l:'$2.04'  },
+      {p:2.00,  l:'$2.00'  },
+      {p:2.04,  l:'$2.04 ✦', be:true},
+      {p:2.40,  l:'$2.40'  },
       {p:2.50,  l:'$2.50'  },
+      {p:2.54,  l:'$2.54 ▲'},
       {p:3.00,  l:'$3.00'  },
+      {p:3.50,  l:'$3.50'  },
       {p:4.00,  l:'$4.00'  },
       {p:5.00,  l:'$5.00'  },
+      {p:6.00,  l:'$6.00'  },
+      {p:7.00,  l:'$7.00'  },
+      {p:8.28,  l:'$8.28 ATH'},
     ]
   },
   xrp:{
@@ -711,8 +711,8 @@ function setStatus(ok, msg) {
 }
 
 function updateUI() {
-  const INVS = { ton:447.53, xrp:28.10, btc:33.02 };
-  const QTYS = { ton:219.40213097, xrp:10.00, btc:0.00035012 };
+  const INVS = { ton:385.47, xrp:28.10, btc:33.02 };
+  const QTYS = { ton:189.05197356, xrp:10.00, btc:0.00035012 };
   let totalVal = 0, totalPnl = 0;
   ['ton','xrp','btc'].forEach(c => {
     const pe  = document.getElementById(c + '-price');
@@ -738,7 +738,7 @@ function updateUI() {
     const tot   = document.getElementById('dash-total');
     const hdr   = document.getElementById('hdr-val-num');
     if (pnlEl) { pnlEl.textContent = (totalPnl >= 0 ? '+' : '') + '$' + nfmt(totalPnl); pnlEl.className = 'sum-val ' + (totalPnl >= 0 ? 'pos' : 'neg'); }
-    if (pctEl) { pctEl.textContent = ((totalPnl / 528.12) * 100).toFixed(2) + '%'; pctEl.className = 'sum-sub ' + (totalPnl >= 0 ? 'pos' : 'neg'); }
+    if (pctEl) { pctEl.textContent = ((totalPnl / 446.59) * 100).toFixed(2) + '% ROI'; pctEl.className = 'sum-sub ' + (totalPnl >= 0 ? 'pos' : 'neg'); }
     if (tot)   tot.textContent = '$' + nfmt(totalVal);
     if (hdr)   hdr.textContent = '$' + nfmt(totalVal);
   }
