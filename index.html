@@ -15,7 +15,7 @@
     --b:#1e3058;--b2:rgba(99,149,255,.3);
     --t1:#dce8ff;--t2:#7d9cbf;--t3:#3a5272;
     --blue:#3b82f6;--cyan:#06b6d4;--green:#22c55e;--red:#ef4444;--orange:#f97316;--purple:#a855f7;--yellow:#eab308;
-    --ton:#0098ea;--xrp:#ef4444;--btc:#f97316;
+    --ton:#0098ea;--xrp:#ef4444;--btc:#f97316;--usdc:#2775ca;
     --r:14px;--r2:8px;--sh:0 8px 32px rgba(0,0,0,.55);--tr:.2s cubic-bezier(.4,0,.2,1);
   }
   html{scroll-behavior:smooth}
@@ -101,6 +101,7 @@
   .alogo.ton{background:linear-gradient(135deg,#0098ea,#0077cc)}
   .alogo.xrp{background:linear-gradient(135deg,#ef4444,#dc2626)}
   .alogo.btc{background:linear-gradient(135deg,#f97316,#ea580c)}
+  .alogo.usdc{background:linear-gradient(135deg,#2775ca,#1a5fa8)}
   .aname{font-size:.95rem;font-weight:700}
   .aticker{font-size:.72rem;color:var(--t3)}
   .aprice-wrap{margin-left:auto;text-align:right}
@@ -360,6 +361,28 @@
           <div class="astat" style="grid-column:1/-1"><div class="astat-lbl">P&amp;L</div><div class="astat-val neg" id="btc-pnl">—</div></div>
         </div>
       </div>
+      <!-- USDC -->
+      <div class="acard">
+        <div class="acard-hdr">
+          <div class="alogo usdc">$</div>
+          <div>
+            <div class="aname">USDC</div>
+            <div class="aticker">USD Coin · Stablecoin</div>
+          </div>
+          <div class="aprice-wrap">
+            <div class="aprice-lbl">Precio actual</div>
+            <div class="aprice-val" id="usdc-price" style="color:var(--green)">$1.00</div>
+          </div>
+        </div>
+        <div class="adiv"></div>
+        <div class="astats">
+          <div class="astat"><div class="astat-lbl">Balance</div><div class="astat-val">161.57 USDC</div></div>
+          <div class="astat"><div class="astat-lbl">Precio promedio</div><div class="astat-val">$1.00</div></div>
+          <div class="astat"><div class="astat-lbl">Valor</div><div class="astat-val pos">$161.56</div></div>
+          <div class="astat"><div class="astat-lbl">Tipo</div><div class="astat-val" style="color:var(--cyan)">Stablecoin</div></div>
+          <div class="astat" style="grid-column:1/-1"><div class="astat-lbl">P&amp;L</div><div class="astat-val mut">$0.00 (estable)</div></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -443,9 +466,10 @@
 <script>
 /* ====== DATA ====== */
 const ASSETS = {
-  ton:{ id:'the-open-network', qty:189.05197356, avg:2.04, inv:385.47, name:'TON', cls:'ton' },
-  xrp:{ id:'ripple',           qty:10.00,        avg:2.8097, inv:28.10, name:'XRP', cls:'xrp' },
-  btc:{ id:'bitcoin',          qty:0.00035012,   avg:94310.52, inv:33.02, name:'BTC', cls:'btc' },
+  ton: { id:'the-open-network', qty:189.05197356, avg:2.04,     inv:385.47, name:'TON',  cls:'ton'  },
+  xrp: { id:'ripple',           qty:10.00,        avg:2.8097,   inv:28.10,  name:'XRP',  cls:'xrp'  },
+  btc: { id:'bitcoin',          qty:0.00035012,   avg:94310.52, inv:33.02,  name:'BTC',  cls:'btc'  },
+  usdc:{ id:'usd-coin',         qty:161.56805611, avg:1.00,     inv:161.56, name:'USDC', cls:'usdc' },
 };
 
 const TXNS = [
@@ -713,7 +737,9 @@ function setStatus(ok, msg) {
 function updateUI() {
   const INVS = { ton:385.47, xrp:28.10, btc:33.02 };
   const QTYS = { ton:189.05197356, xrp:10.00, btc:0.00035012 };
-  let totalVal = 0, totalPnl = 0;
+  // USDC is a stablecoin: always $1.00, add its value directly to totals
+  const USDC_VAL = 161.56;
+  let totalVal = USDC_VAL, totalPnl = 0;
   ['ton','xrp','btc'].forEach(c => {
     const pe  = document.getElementById(c + '-price');
     const ve  = document.getElementById(c + '-val');
@@ -738,7 +764,7 @@ function updateUI() {
     const tot   = document.getElementById('dash-total');
     const hdr   = document.getElementById('hdr-val-num');
     if (pnlEl) { pnlEl.textContent = (totalPnl >= 0 ? '+' : '') + '$' + nfmt(totalPnl); pnlEl.className = 'sum-val ' + (totalPnl >= 0 ? 'pos' : 'neg'); }
-    if (pctEl) { pctEl.textContent = ((totalPnl / 446.59) * 100).toFixed(2) + '% ROI'; pctEl.className = 'sum-sub ' + (totalPnl >= 0 ? 'pos' : 'neg'); }
+    if (pctEl) { pctEl.textContent = ((totalPnl / 608.15) * 100).toFixed(2) + '% ROI'; pctEl.className = 'sum-sub ' + (totalPnl >= 0 ? 'pos' : 'neg'); }
     if (tot)   tot.textContent = '$' + nfmt(totalVal);
     if (hdr)   hdr.textContent = '$' + nfmt(totalVal);
   }
