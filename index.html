@@ -272,8 +272,8 @@
     <div class="sum-grid">
       <div class="sum-card">
         <div class="sum-lbl">Inversión TON (neta)</div>
-        <div class="sum-val">$385.47</div>
-        <div class="sum-sub">189.05 TON × $2.04 avg</div>
+        <div class="sum-val">$562.32</div>
+        <div class="sum-sub">304.79 TON × $1.845 avg</div>
         <div class="sum-ico">💰</div>
       </div>
       <div class="sum-card">
@@ -308,9 +308,9 @@
         </div>
         <div class="adiv"></div>
         <div class="astats">
-          <div class="astat"><div class="astat-lbl">Balance</div><div class="astat-val">189.05 TON</div></div>
-          <div class="astat"><div class="astat-lbl">Precio promedio</div><div class="astat-val">$2.04</div></div>
-          <div class="astat"><div class="astat-lbl">Inversión</div><div class="astat-val">$385.47</div></div>
+          <div class="astat"><div class="astat-lbl">Balance</div><div class="astat-val">304.79 TON</div></div>
+          <div class="astat"><div class="astat-lbl">Precio promedio</div><div class="astat-val">$1.845</div></div>
+          <div class="astat"><div class="astat-lbl">Inversión</div><div class="astat-val">$562.32</div></div>
           <div class="astat"><div class="astat-lbl">Valor actual</div><div class="astat-val" id="ton-val">—</div></div>
           <div class="astat" style="grid-column:1/-1"><div class="astat-lbl">P&amp;L</div><div class="astat-val neg" id="ton-pnl">—</div></div>
         </div>
@@ -388,10 +388,10 @@
 
   <!-- ===== TRANSACCIONES ===== -->
   <div class="panel" id="panel-transacciones">
-    <div class="stitle">Historial de Transacciones <small>12 operaciones</small></div>
+    <div class="stitle">Historial de Transacciones <small>13 operaciones</small></div>
     <div class="tx-filters">
-      <button class="txf active" id="txf-all" onclick="filterTx('all')">Todas (12)</button>
-      <button class="txf ton" id="txf-ton" onclick="filterTx('TON')">TON (9)</button>
+      <button class="txf active" id="txf-all" onclick="filterTx('all')">Todas (13)</button>
+      <button class="txf ton" id="txf-ton" onclick="filterTx('TON')">TON (10)</button>
       <button class="txf xrp" id="txf-xrp" onclick="filterTx('XRP')">XRP (1)</button>
       <button class="txf btc" id="txf-btc" onclick="filterTx('BTC')">BTC (2)</button>
     </div>
@@ -466,7 +466,7 @@
 <script>
 /* ====== DATA ====== */
 const ASSETS = {
-  ton: { id:'the-open-network', qty:189.05197356, avg:2.04,     inv:385.47, name:'TON',  cls:'ton'  },
+  ton: { id:'the-open-network', qty:304.79197356, avg:1.845, inv:562.32, name:'TON',  cls:'ton'  },
   xrp: { id:'ripple',           qty:10.00,        avg:2.8097,   inv:28.10,  name:'XRP',  cls:'xrp'  },
   btc: { id:'bitcoin',          qty:0.00035012,   avg:94310.52, inv:33.02,  name:'BTC',  cls:'btc'  },
   usdc:{ id:'usd-coin',         qty:161.56805611, avg:1.00,     inv:161.56, name:'USDC', cls:'usdc' },
@@ -488,6 +488,8 @@ const TXNS = [
   {n:10,date:'05 sept 2025',       pair:'XRP/USDC', type:'COMPRA', price:2.8097, qty:10.00,       total:28.10},
   {n:11,date:'14 nov 2025',        pair:'BTC/USDT', type:'COMPRA', price:97513.63,qty:0.00031,    total:30.23},
   {n:12,date:'27 mar 2024',        pair:'BTC/DEPÓSITO', type:'COMPRA', price:69455.00, qty:0.00004012, total:2.79},
+  // ── NUEVA COMPRA TON ──
+  {n:13,date:'05 jun 2026, 10:29', pair:'TON/USDC', type:'COMPRA', price:1.528, qty:115.74, total:176.85},
 ];
 
 const PROJS = {
@@ -495,8 +497,8 @@ const PROJS = {
     scenarios:[
       {p:1.00,  l:'$1.00'  },
       {p:1.50,  l:'$1.50'  },
+      {p:1.845, l:'$1.845 ✦', be:true},
       {p:2.00,  l:'$2.00'  },
-      {p:2.04,  l:'$2.04 ✦', be:true},
       {p:2.40,  l:'$2.40'  },
       {p:2.50,  l:'$2.50'  },
       {p:2.54,  l:'$2.54 ▲'},
@@ -735,8 +737,8 @@ function setStatus(ok, msg) {
 }
 
 function updateUI() {
-  const INVS = { ton:385.47, xrp:28.10, btc:33.02 };
-  const QTYS = { ton:189.05197356, xrp:10.00, btc:0.00035012 };
+  const INVS = { ton:562.32, xrp:28.10, btc:33.02 };
+  const QTYS = { ton:304.79197356, xrp:10.00, btc:0.00035012 };
   // USDC is a stablecoin: always $1.00, add its value directly to totals
   const USDC_VAL = 161.56;
   let totalVal = USDC_VAL, totalPnl = 0;
